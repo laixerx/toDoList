@@ -11,11 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('tasks','TaskController@index')->name('task.index');
 Route::post('task/add', 'TaskController@addTask')->name('task.add');
 Route::delete('task/delete/{id}', 'TaskController@destroy')->name('task.destroy');
 Route::post('task/completed/{id}', 'TaskController@completed')->name('task.completed');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/logout' , 'HomeController@out')->name('out');
